@@ -1,5 +1,5 @@
 import express from "express";
-import path from "path"; // Import the 'path' module for file path operations
+import path from "path";
 import { port } from "./src/config/config.js";
 import connectDb from "./src/config/db.js";
 import chalk from "chalk";
@@ -39,6 +39,9 @@ const PORT = port || 3000;
 connectDb();
 
 if (process.env.NODE_ENV === 'production') {
+    // Use import.meta.url to get the current module's URL
+    const __dirname = path.dirname(new URL(import.meta.url).pathname);
+    
     // Serve the frontend files from the 'frontend/dist' directory
     app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
 
