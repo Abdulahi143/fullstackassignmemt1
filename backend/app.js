@@ -39,21 +39,16 @@ const PORT = port || 3000;
 connectDb();
 
 if (process.env.NODE_ENV === 'production') {
-    // Use import.meta.url to get the current module's URL
-    const __dirname = path.dirname(new URL(import.meta.url).pathname);
-    
-    // Serve the frontend files from the 'frontend/dist' directory
-    app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
-
-    // Handle all other routes by serving the 'index.html' file
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, '/frontend/dist')));
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
-    });
+        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+    })
+
 } else {
-    // In development mode, have an API endpoint
     app.get('/api', (req, res) => {
-        res.send('API is running....');
-    });
+        res.send('API is running....')
+    })
 }
 
 app.listen(PORT, () => {
