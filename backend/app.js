@@ -11,7 +11,7 @@ const app = express();
 app.use(morgan("dev"));
 
 
-var whitelist = ['http://localhost:3000', 'http://localhost:5173'];
+var whitelist = ['http://localhost:3000', 'http://localhost:5173, https://fullstack-assignment1-engineers.onrender.com'];
 
 const corsOptionsDelegate = function (req, callback) {
     var corsOptions;
