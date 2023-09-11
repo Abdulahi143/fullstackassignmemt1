@@ -1,17 +1,17 @@
-import express  from "express";
+import express from "express";
+import path from "path"; // Import the 'path' module for file path operations
 import { port } from "./src/config/config.js";
 import connectDb from "./src/config/db.js";
 import chalk from "chalk";
 import engineersRouter from "./src/routes/engineers.js";
-import cors from 'cors'
+import cors from 'cors';
 import morgan from "morgan";
 
 const app = express();
 
 app.use(morgan("dev"));
 
-
-var whitelist = ['http://localhost:3000', 'http://localhost:5173, https://fullstack-assignment1-engineers.onrender.com'];
+var whitelist = ['http://localhost:3000', 'http://localhost:5173', 'https://fullstack-assignment1-engineers.onrender.com'];
 
 const corsOptionsDelegate = function (req, callback) {
     var corsOptions;
@@ -24,11 +24,7 @@ const corsOptionsDelegate = function (req, callback) {
 };
 
 app.use(cors(corsOptionsDelegate));
-
-
 app.use(cors(corsOptionsDelegate));
-
-
 app.use(express.json());
 
 app.use('/', engineersRouter);
@@ -38,11 +34,24 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500).send(err.message || "Unknown Error");
 });
 
-
-
 const PORT = port || 3000;
 
 connectDb();
+
+if (process.env.NODE_ENV === 'production') {
+    // Serve the frontend files from the 'frontend/dist' directory
+    app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
+
+    // Handle all other routes by serving the 'index.html' file
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
+    });
+} else {
+    // In development mode, have an API endpoint
+    app.get('/api', (req, res) => {
+        res.send('API is running....');
+    });
+}
 
 app.listen(PORT, () => {
     console.log(process.env.PORT);
