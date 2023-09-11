@@ -1,0 +1,112 @@
+/* App.css */
+
+/* Overall styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* Form styling */
+  .form input,
+  .form select,
+  .form button {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Engineer section styling */
+  .engineer {
+    margin-top: 20px;
+  }
+  
+  .engineer h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .engineer-details {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .engineer-details span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+  
+  /* Engineer button styling */
+  .engineer-buttons button {
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .engineer-buttons .delete {
+    background-color: #ff0000;
+    color: #fff;
+  }
+  
+  .engineer-buttons .verify {
+    background-color: #00cc00;
+    color: #fff;
+  }
+  
+  .engineer-buttons .verify:hover {
+    background-color: #00aa00; /* Change the color on hover */
+  }
+  
+  .engineer-buttons .unverify {
+    background-color: #ff9900;
+    color: #fff;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    .form input,
+    .form select,
+    .form button {
+      margin-bottom: 8px;
+      padding: 8px;
+    }
+  }
+  
