@@ -11,7 +11,7 @@ const app = express();
 
 app.use(morgan("dev"));
 
-var whitelist = ['http://localhost:3000', 'http://localhost:5173', 'https://fullstack-assignment1-engineers.onrender.com'];
+var whitelist = ['http://localhost:3000', 'http://localhost:5173'];
 
 const corsOptionsDelegate = function (req, callback) {
     var corsOptions;
@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.use('/', engineersRouter);
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res, next) => {
     console.error("Error:", err);
     res.status(err.status || 500).send(err.message || "Unknown Error");
 });
