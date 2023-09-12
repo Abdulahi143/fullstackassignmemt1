@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://your-production-backend-url.com',
+        target: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://fullstackassignmemt1.onrender.com/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
