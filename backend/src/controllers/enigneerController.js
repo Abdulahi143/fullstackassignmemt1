@@ -45,7 +45,6 @@ export const removeEngineer = async (req, res) => {
     try {
         const engineer = await Engineer.findById(req.params.id);
 
-        // If no engineer is found, send a 404 response
         if (!engineer) {
             return res.status(404).send("No Engineer found");
         }
@@ -57,8 +56,6 @@ export const removeEngineer = async (req, res) => {
         console.error("Error removing engineer:", err);
         res.status(500).send({ status: false, message: err.message || "Unknown Error" });
     }
-
-
 
 };
 
@@ -107,7 +104,7 @@ export const updateEngineerToUnverify = async (req, res) => {
 
 export const showVerifiedEngineers = async (req, res) => {
     try {
-        const engineers = await Engineer.find({ verified: true }); // Only fetch engineers with verified set to true
+        const engineers = await Engineer.find({ verified: true });
 
         return res.status(200).send(engineers);
     } catch (err) {
