@@ -12,10 +12,9 @@ function App() {
   const [verifiedEngineers, setVerifiedEngineers] = useState([]);
   const [unverifiedEngineers, setUnverifiedEngineers] = useState([]);
 
-  // Function to fetch unverified engineers
   const fetchUnverifiedEngineers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/unverified"); // Corrected endpoint
+      const response = await axios.get("http://localhost:3000/unverified");
       setUnverifiedEngineers(response.data);
     } catch (err) {
       console.error("Error fetching unverified engineers:", err);
@@ -57,9 +56,9 @@ function App() {
       name.trim() === "" ||
       email.trim() === "" ||
       age.trim() === "" ||
-      experienceYears.trim() === "" ||
-      programmingLanguage === "None_of_the_above"
-    ) {
+      experienceYears.trim() === ""||
+      programmingLanguage("Must_choose")
+      ) {
       console.error("Please fill in all the required fields.");
       return;
     }
@@ -74,7 +73,6 @@ function App() {
       });
 
       console.log("Successfully added the engineer!");
-      // After successfully adding, refetch the unverified engineers
       fetchUnverifiedEngineers();
     } catch (err) {
       console.error("Error for adding eng:", err);
@@ -84,7 +82,6 @@ function App() {
   const verifyEngineer = async (engineer) => {
     try {
       await axios.put(`http://localhost:3000/verify/${engineer._id}`);
-      // After successfully verifying, refetch both lists
       fetchUnverifiedEngineers();
       fetchVerifiedEngineers();
       console.log("Engineer verified successfully!");
@@ -97,7 +94,6 @@ function App() {
   const unverifyEngineer = async (engineer) => {
     try {
       await axios.put(`http://localhost:3000/unverify/${engineer._id}`);
-      // After successfully unverifying, refetch both lists
       fetchUnverifiedEngineers();
       fetchVerifiedEngineers();
       console.log("Engineer unverified successfully!");
@@ -143,7 +139,7 @@ function App() {
             value={programmingLanguage}
             onChange={(event) => setProgrammingLanguage(event.target.value)}
           >
-            <option value="None_of_the_above">Choose Mastered Programming Language</option>
+            <option value="Must_choose">Choose Mastered Programming Language</option>
             <option value="None_of_the_above">None</option>
             <option value="JavaScript">JavaScript</option>
             <option value="Python">Python</option>
