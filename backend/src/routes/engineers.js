@@ -3,7 +3,7 @@ import { addEngineer, removeEngineer, showEngineers, showUnverifiedEngineers, sh
 
 const engineersRouter = express.Router();
 
-// engineersRouter.post('/add-engineer', addEngineer);
+engineersRouter.post('/', addEngineer);
 engineersRouter.get('/', showEngineers, addEngineer);
 engineersRouter.get('/verified', showVerifiedEngineers)
 engineersRouter.get('/unverified', showUnverifiedEngineers)
