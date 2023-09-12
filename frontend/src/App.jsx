@@ -12,6 +12,7 @@ function App() {
   const [verifiedEngineers, setVerifiedEngineers] = useState([]);
   const [unverifiedEngineers, setUnverifiedEngineers] = useState([]);
 
+  // Function to fetch unverified engineers
   const fetchUnverifiedEngineers = async () => {
     try {
       const response = await axios.get("http://localhost:3000/unverified");
@@ -49,6 +50,15 @@ function App() {
     }
   };
 
+  // Function to reset the form fields
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setAge("");
+    setExperienceYears("");
+    setProgrammingLanguage("Must_choose");
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -56,9 +66,9 @@ function App() {
       name.trim() === "" ||
       email.trim() === "" ||
       age.trim() === "" ||
-      experienceYears.trim() === ""||
+      experienceYears.trim() === "" ||
       programmingLanguage === "Must_choose"
-      ) {
+    ) {
       console.error("Please fill in all the required fields.");
       return;
     }
@@ -74,6 +84,7 @@ function App() {
 
       console.log("Successfully added the engineer!");
       fetchUnverifiedEngineers();
+      resetForm(); // Reset the form fields after a successful submission
     } catch (err) {
       console.error("Error for adding eng:", err);
     }
@@ -89,7 +100,6 @@ function App() {
       console.error("Error verifying engineer:", err);
     }
   };
-  
 
   const unverifyEngineer = async (engineer) => {
     try {
@@ -107,7 +117,7 @@ function App() {
       <div className="form">
         <h2>Engineer Admission Web</h2>
         <form className="input-group" onSubmit={handleSubmit}>
-        <input
+          <input
             value={name}
             onChange={(event) => setName(event.target.value)}
             type="text"
@@ -163,7 +173,7 @@ function App() {
               <p>Experience: {engineer.experienceYears} Years</p>
               <p>Skills: {engineer.programmingLanguage}</p>
               <div className="engineer-buttons">
-              <button className="verify" onClick={() => verifyEngineer(engineer)}>Verify</button>
+                <button className="verify" onClick={() => verifyEngineer(engineer)}>Verify</button>
                 <button
                   className="delete"
                   onClick={() => deleteEngineer(engineer._id)}
@@ -182,7 +192,7 @@ function App() {
           <h2>Verified list</h2>
           {verifiedEngineers.map((engineer, index) => (
             <div className="engineer-details" key={index}>
-           <h3>{engineer.name}</h3>
+              <h3>{engineer.name}</h3>
               <p>Email: {engineer.email}</p>
               <p>Age: {engineer.age}</p>
               <p>Experience: {engineer.experienceYears} months</p>
