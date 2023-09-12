@@ -57,7 +57,7 @@ function App() {
       email.trim() === "" ||
       age.trim() === "" ||
       experienceYears.trim() === ""||
-      programmingLanguage("Must_choose")
+      programmingLanguage === "Must_choose"
       ) {
       console.error("Please fill in all the required fields.");
       return;
