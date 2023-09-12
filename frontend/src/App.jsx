@@ -25,7 +25,7 @@ function App() {
   // Function to fetch verified engineers
   const fetchVerifiedEngineers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/verified"); // Corrected endpoint
+      const response = await axios.get("http://localhost:3000/verified");
       setVerifiedEngineers(response.data);
     } catch (err) {
       console.error("Error fetching verified engineers:", err);
@@ -65,7 +65,7 @@ function App() {
     }
 
     try {
-      const data = await axios.post("http://localhost:3000/add-engineer", {
+      const data = await axios.post("http://localhost:3000/", {
         name,
         email,
         age,
