@@ -15,7 +15,7 @@ function App() {
   // Function to fetch unverified engineers
   const fetchUnverifiedEngineers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/unverified");
+      const response = await axios.get("./api/unverified");
       setUnverifiedEngineers(response.data);
     } catch (err) {
       console.error("Error fetching unverified engineers:", err);
@@ -25,7 +25,7 @@ function App() {
   // Function to fetch verified engineers
   const fetchVerifiedEngineers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/verified");
+      const response = await axios.get("./api/verified");
       setVerifiedEngineers(response.data);
     } catch (err) {
       console.error("Error fetching verified engineers:", err);
@@ -92,7 +92,7 @@ function App() {
 
   const verifyEngineer = async (engineer) => {
     try {
-      await axios.put(`http://localhost:3000/verify/${engineer._id}`);
+      await axios.put(`./api/verify/${engineer._id}`);
       fetchUnverifiedEngineers();
       fetchVerifiedEngineers();
       console.log("Engineer verified successfully!");
@@ -103,7 +103,7 @@ function App() {
 
   const unverifyEngineer = async (engineer) => {
     try {
-      await axios.put(`http://localhost:3000/unverify/${engineer._id}`);
+      await axios.put(`./api/unverify/${engineer._id}`);
       fetchUnverifiedEngineers();
       fetchVerifiedEngineers();
       console.log("Engineer unverified successfully!");
