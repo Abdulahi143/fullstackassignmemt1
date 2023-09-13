@@ -12,13 +12,8 @@ app.use(morgan("dev"));
 
 var whitelist = ['http://localhost:3000', 'http://localhost:5173'];
 
-const corsOptionsDelegate = function (req, callback) {
-    var corsOptions;
-    if (whitelist.indexOf(req.header('Origin')) !== -1) {
-        corsOptions = { origin: true };
-    } else {
-        corsOptions = { origin: false };
-    }
+const corsOptionsDelegate = function (_req, callback) {
+    const corsOptions = { origin: true }; // Allow all origins
     callback(null, corsOptions);
 };
 
