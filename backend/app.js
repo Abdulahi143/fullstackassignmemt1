@@ -33,10 +33,6 @@ app.use((err, _req, res, next) => {
     res.status(err.status || 500).send(err.message || "Unknown Error");
 });
 
-const PORT = port || 3000;
-
-connectDb();
-
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname, '/frontend/dist')));
@@ -49,6 +45,12 @@ if (process.env.NODE_ENV === 'production') {
         res.send('API is running....')
     })
 }
+
+const PORT = port || 3000;
+
+connectDb();
+
+
 
 app.listen(PORT, () => {
     console.log(process.env.PORT);
