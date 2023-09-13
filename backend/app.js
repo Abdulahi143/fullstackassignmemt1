@@ -10,7 +10,7 @@ import morgan from "morgan";
 const app = express();
 app.use(morgan("dev"));
 
-var whitelist = ['http://localhost:3000', 'http://localhost:5173', 'https://fullstackassignmemt1.onrender.com'];
+var whitelist = ['http://localhost:3000', 'http://localhost:5173'];
 
 const corsOptionsDelegate = function (req, callback) {
     var corsOptions;
